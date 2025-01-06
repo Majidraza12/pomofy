@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        unique: lowercase,
+        unique: true,
     },
     profilePic: {
         type: String, //profile pic url stored

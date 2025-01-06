@@ -9,13 +9,17 @@ dotenv.config()
 const app = express();
 connectDB()
 
-app.listen(5001, () => {
-  console.log(`Sever is Running ${process.env.SERVER_PORT}`);
-});
-
 //when ever the request comes and the path is /api/auth just go to router
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  credentials : true,
+}))
 app.use(express.json())
+app.use(cookieParser())
 app.use("/api/auth", router);
 app.get("/", (req, res) => {
   res.send("this is Home Page")
+});
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`Sever is Running ${process.env.SERVER_PORT}`);
 });
