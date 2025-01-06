@@ -1,7 +1,6 @@
-import React from 'react';
-import { Settings as SettingsIcon } from 'lucide-react';
-import {SlidersHorizontal} from 'lucide-react'
-import { useTimerStore } from '../store/useTimerStore.js';
+import React from "react";
+import { SlidersHorizontal } from "lucide-react";
+import { useTimerStore } from "../store/useTimerStore.js";
 
 export const Settings = () => {
   const { settings, updateSettings } = useTimerStore();
@@ -11,9 +10,13 @@ export const Settings = () => {
       <label tabIndex={0} className="btn btn-ghost btn-circle">
         <SlidersHorizontal />
       </label>
-      <div tabIndex={0} className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-black text-base-content">
+      <div
+        tabIndex={0}
+        className="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-black text-base-content"
+      >
         <div className="card-body">
           <h3 className="font-bold text-lg">Timer Settings</h3>
+          {/* Fix nesting by ensuring no <p> tag contains block-level elements */}
           <div className="form-control">
             <label className="label">
               <span className="label-text">Pomodoro (minutes)</span>
@@ -22,7 +25,9 @@ export const Settings = () => {
               type="number"
               className="input input-bordered w-full"
               value={settings.pomodoro}
-              onChange={(e) => updateSettings({ pomodoro: Number(e.target.value) })}
+              onChange={(e) =>
+                updateSettings({ pomodoro: Number(e.target.value) })
+              }
               min="1"
               max="60"
             />
@@ -35,7 +40,9 @@ export const Settings = () => {
               type="number"
               className="input input-bordered w-full"
               value={settings.shortBreak}
-              onChange={(e) => updateSettings({ shortBreak: Number(e.target.value) })}
+              onChange={(e) =>
+                updateSettings({ shortBreak: Number(e.target.value) })
+              }
               min="1"
               max="30"
             />
@@ -48,7 +55,9 @@ export const Settings = () => {
               type="number"
               className="input input-bordered w-full"
               value={settings.longBreak}
-              onChange={(e) => updateSettings({ longBreak: Number(e.target.value) })}
+              onChange={(e) =>
+                updateSettings({ longBreak: Number(e.target.value) })
+              }
               min="1"
               max="60"
             />
@@ -59,4 +68,4 @@ export const Settings = () => {
   );
 };
 
-export default Settings
+export default Settings;
