@@ -1,4 +1,4 @@
-import React , {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,12 +13,16 @@ import Dashboard from "./pages/Dashboard";
 import { useAuthStore } from "./store/useAuthStore";
 
 const App = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, login } = useAuthStore();
+
   useEffect(() => {
-    checkAuth();
+    checkAuth(); // Check authentication on app load
+    console.log("Auth Check");
   }, [checkAuth]);
+
   console.log({ authUser });
 
+  // Show a loading spinner while checking auth status
   if (isCheckingAuth && !authUser)
     return (
       <div className="flex items-center justify-center h-screen">
@@ -29,9 +33,16 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={authUser ? <Dashboard /> : <Landing />} />
-        <Route path="/signup" element={<SignUp />} />
+        {/* Show Landing page if not logged in, Dashboard if logged in */}
+        <Route path="/" element={!authUser ? <Landing /> : <Navigate to="/dashboard"/>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
+        {/* Redirect to Login if user is not authenticated */}
+        <Route
+          path="/dashboard"
+          element={authUser ? <Dashboard /> : <Navigate to="/" />}
+        />
       </Routes>
       <Toaster />
     </>

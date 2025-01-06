@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const LoginPage = () => {
@@ -10,7 +11,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const { login, isLoggingIn, isValid } = useAuthStore();
+    const { authUser ,login, isLoggingIn, isValid } = useAuthStore();
+    const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
@@ -34,6 +36,9 @@ const LoginPage = () => {
 
     // If both email and password are valid, proceed to login
     login(formData);
+    if (authUser) {
+        navigate('/dashboard')
+    }
   };
 
   return (

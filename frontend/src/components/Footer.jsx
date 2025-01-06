@@ -8,7 +8,7 @@ const Footer = () => {
   const hanldeClick = (e) => {
     e.preventDefault()
   
-    navigate("/signup")
+    navigate("/login")
 
   }
 
