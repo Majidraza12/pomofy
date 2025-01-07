@@ -15,44 +15,41 @@ import toast from "react-hot-toast";
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
+    username: "",
     email: "",
     password: "",
   });
 
   const { signup, isSigningUp } = useAuthStore();
 
-  const validateForm = () => {
-    if (!formData.fullName.trim()) {
-      toast.error("Full name is required");
-      return false;
-    }
-    if (!formData.email.trim()) {
-      toast.error("Email is required");
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      toast.error("Invalid email format");
-      return false;
-    }
-    if (!formData.password) {
-      toast.error("Password is required");
-      return false;
-    }
-    if (formData.password.length < 6) {
-      toast.error("Password must be at least 6 characters");
-      return false;
-    }
-    return true;
-  };
+  // const validateForm = () => {
+  //   if (!formData.fullName.trim()) {
+  //     toast.error("Full name is required");
+  //     return false;
+  //   }
+  //   if (!formData.email.trim()) {
+  //     toast.error("Email is required");
+  //     return false;
+  //   }
+  //   if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //     toast.error("Invalid email format");
+  //     return false;
+  //   }
+  //   if (!formData.password) {
+  //     toast.error("Password is required");
+  //     return false;
+  //   }
+  //   if (formData.password.length < 6) {
+  //     toast.error("Password must be at least 6 characters");
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const isValid = validateForm();
-    if (isValid) {
-      signup(formData);
-    }
+    console.log(formData)
+    signup(formData)
   };
 
   return (
@@ -89,9 +86,9 @@ const SignUpPage = () => {
                 type="text"
                 className="input input-bordered w-full pl-10"
                 placeholder="John Doe"
-                value={formData.fullName}
+                value={formData.username}
                 onChange={(e) =>
-                  setFormData({ ...formData, fullName: e.target.value })
+                  setFormData({ ...formData, username: e.target.value })
                 }
               />
             </div>

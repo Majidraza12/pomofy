@@ -18,26 +18,26 @@ const LoginPage = () => {
     e.preventDefault(); // Prevent the default form submission behavior
 
     // Validate email
-    const isValidEmail = (email) => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation regex
-      return emailRegex.test(email);
-    };
+    // const isValidEmail = (email) => {
+    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation regex
+    //   return emailRegex.test(email);
+    // };
 
-    // Validate password
-    if (!formData.email.trim() || !isValidEmail(formData.email)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
+    // // Validate password
+    // if (!formData.email.trim() || !isValidEmail(formData.email)) {
+    //   toast.error("Please enter a valid email address.");
+    //   return;
+    // }
 
-    if (!formData.password.trim()) {
-      toast.error("All fields are required");
-      return;
-    }
+    // if (!formData.password.trim()) {
+    //   toast.error("All fields are required");
+    //   return;
+    // }
 
     // If both email and password are valid, proceed to login
     login(formData);
     if (authUser) {
-        navigate('/dashboard')
+      navigate('/')
     }
   };
 

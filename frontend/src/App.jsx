@@ -18,6 +18,7 @@ const App = () => {
   useEffect(() => {
     checkAuth(); // Check authentication on app load
     console.log("Auth Check");
+    console.log(isCheckingAuth)
   }, [checkAuth]);
 
   console.log({ authUser });
@@ -33,16 +34,9 @@ const App = () => {
   return (
     <>
       <Routes>
-        {/* Show Landing page if not logged in, Dashboard if logged in */}
-        <Route path="/" element={!authUser ? <Landing /> : <Navigate to="/dashboard"/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-
-        {/* Redirect to Login if user is not authenticated */}
-        <Route
-          path="/dashboard"
-          element={authUser ? <Dashboard /> : <Navigate to="/" />}
-        />
+        <Route path="/" element={authUser ? <Dashboard/> : <Landing/>} />
+        <Route path="/login" element={ !authUser ? <Login /> : <Dashboard/>} />
+        <Route path="/signup" element={!authUser ? <SignUp /> : <Dashboard/>} />
       </Routes>
       <Toaster />
     </>

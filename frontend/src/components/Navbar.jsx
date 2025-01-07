@@ -1,18 +1,21 @@
 import React from 'react'
 import Settings from './Settings'
 import { useAuthStore } from '../store/useAuthStore';
-import {LogOut} from "lucide-react"
+import { LogOut } from "lucide-react"
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
 
 
-  const { authUser , logout } = useAuthStore()
+  const { authUser, logout } = useAuthStore()
+  const navigate = useNavigate()
   
   const handleLogout = (e) => {
     e.preventDefault()
     try {
       logout()
+      navigate('/')
     } catch (error) {
       
     }
