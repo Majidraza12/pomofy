@@ -1,5 +1,6 @@
 import express from "express";
 import router from "./routes/auth.route.js";
+import sessionRouter from "./routes/session.route.js";
 import dotenv from "dotenv"
 import { connectDB } from "./lib/db.connect.js";
 import cookieParser from 'cookie-parser'
@@ -17,6 +18,7 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 app.use("/api/auth", router);
+app.use("/api/session", sessionRouter);
 app.get("/", (req, res) => {
   res.send("this is Home Page")
 });

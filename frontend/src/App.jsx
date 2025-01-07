@@ -1,25 +1,24 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import {
-  BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 import Landing from "./pages/Landing";
 import SignUp from "./pages/SignUp";
 import { Toaster } from "react-hot-toast";
-import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import { useAuthStore } from "./store/useAuthStore";
-
+import { Loader } from "lucide-react";
+import Login from "./pages/Login";
 const App = () => {
-  const { authUser, checkAuth, isCheckingAuth, login } = useAuthStore();
+  
+  const { authUser, checkAuth, isCheckingAuth,} = useAuthStore();
 
   useEffect(() => {
     checkAuth(); // Check authentication on app load
     console.log("Auth Check");
     console.log(isCheckingAuth)
-  }, [checkAuth]);
+  }, [checkAuth,isCheckingAuth]);
 
   console.log({ authUser });
 

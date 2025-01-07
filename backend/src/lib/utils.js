@@ -6,7 +6,6 @@ export const generateToken = (userId, res) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET_KEY, {
         expiresIn : "1d"
     })
-    console.log("JWT : ",token)
     //we create a JWT and we will store it on the users browser using a cookie
 
     res.cookie("jwt", token, {
@@ -15,6 +14,4 @@ export const generateToken = (userId, res) => {
         sameSite: "strict", //CRSF -> prevent cross-site request forgery attacks
         secure: process.env.NODE_ENV !== "development" //this should be secure if we are in development mode
     })
-    console.log(res.getHeaders())
-    
 }
