@@ -26,7 +26,7 @@ export const useSessionStore = create((set) => ({
     };
 
     try {
-      const response = await axiosInstance.post("/api/sessions", dataToSend);
+      const response = await axiosInstance.post("/session/store", dataToSend);
       toast.success("Session saved successfully!");
       return response.data;
     } catch (error) {
@@ -34,4 +34,19 @@ export const useSessionStore = create((set) => ({
       toast.error("Failed to save session.");
     }
   },
+
+  getSessionsByUser: async (data) => {
+    try {
+      const response = await axiosInstance.post("/session/getSessions", data);
+      if (response.data.success) {
+        return response.data.data;
+      }
+      return [];
+    } catch (error) {
+      console.log("Error getting sessions:", error);
+      toast.error("Failed to get sessions.");
+      return [];
+    }
+  },
 }));
+

@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar";
 import ModeSelector from "../components/ModeSelector";
 import Timer from "../components/Timer";

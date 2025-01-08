@@ -3,7 +3,6 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,8 +10,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-    const { authUser ,login, isLoggingIn, isValid } = useAuthStore();
-    const navigate = useNavigate()
+  const { authUser, login, isLoggingIn, isValid } = useAuthStore();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
@@ -37,7 +36,7 @@ const LoginPage = () => {
     // If both email and password are valid, proceed to login
     login(formData);
     if (authUser) {
-      navigate('/')
+      navigate("/");
     }
   };
 
@@ -134,7 +133,7 @@ const LoginPage = () => {
 
         <div className="text-center">
           <p className="text-base-content/60">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link to="/signup" className="link link-primary">
               Create account
             </Link>

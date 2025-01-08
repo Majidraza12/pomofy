@@ -1,4 +1,3 @@
-import React from 'react'
 import Settings from './Settings'
 import { useAuthStore } from '../store/useAuthStore';
 import { LogOut } from "lucide-react"
@@ -12,13 +11,9 @@ const Navbar = () => {
   const navigate = useNavigate()
   
   const handleLogout = (e) => {
-    e.preventDefault()
-    try {
-      logout()
-      navigate('/')
-    } catch (error) {
-      
-    }
+    e.preventDefault();
+    logout();
+    navigate("/");
   }
 
   return (

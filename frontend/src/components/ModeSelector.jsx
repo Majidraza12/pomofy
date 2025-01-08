@@ -1,9 +1,15 @@
-import React from 'react'
 import { useTimerStore } from '../store/useTimerStore'
+import { useSessionStore } from '../store/useSessionStore'
+import { useEffect } from 'react'
 
 const ModeSelector = () => {
 
-    const {mode,setMode} = useTimerStore()
+    const { mode, setMode } = useTimerStore()
+    const { setSessionCompleted } = useSessionStore()
+    
+    useEffect(() => { 
+        setSessionCompleted(false)
+    },[mode,setSessionCompleted])
 
   return (
     <div className='flex justify-center mt-20 gap-4'>

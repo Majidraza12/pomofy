@@ -1,9 +1,17 @@
-import React from "react";
+import { useSessionStore } from "../store/useSessionStore.js";
 import { SlidersHorizontal } from "lucide-react";
 import { useTimerStore } from "../store/useTimerStore.js";
+import { useEffect } from "react";
 
 export const Settings = () => {
-  const { settings, updateSettings } = useTimerStore();
+  const { settings, updateSettings,setIsRunning } = useTimerStore();
+  const { setSessionCompleted } = useSessionStore();
+
+
+  useEffect(() => {
+    setSessionCompleted(false);
+    setIsRunning(false)
+  }, [settings, setSessionCompleted,setIsRunning]);
 
   return (
     <div className="dropdown dropdown-end">
