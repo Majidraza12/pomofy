@@ -11,8 +11,7 @@ const ResetPage = () => {
     verifyOTP,
     resetPassword,
     isSendingOTP,
-    isVerifyingOTP,
-    isResettingPassword,    
+    isVerifyingOTP,   
   } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
@@ -70,13 +69,12 @@ const ResetPage = () => {
     if (password.length < 6) {
       return toast.error("Password should atleast Contain 6 Characters");
     }
-    console.log("Password : ", password);
     // setFormData({ ...formData, password: password }); // Update formData with password
     const updatedFormData = { ...formData, password };
-    console.log(updatedFormData);
     try {
       await resetPassword(updatedFormData); // Assuming `resetPassword` takes email and new password as parameters
       toast.success("Password reset was successful");
+      
     } catch (error) {
       console.error(error);
       toast.error("Password reset failed");

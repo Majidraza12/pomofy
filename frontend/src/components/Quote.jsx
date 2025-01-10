@@ -5,7 +5,7 @@ const Quote = () => {
     const { quote, isFetchingQuote, getQuote } = useAuthStore();
     useEffect(() => {
         getQuote()
-        console.log(quote)
+        // console.log(quote)
     }, [getQuote,quote])  
     return (
       <div className="mx-auto flex flex-col items-center justify-center">

@@ -17,11 +17,10 @@ const App = () => {
 
   useEffect(() => {
     checkAuth(); // Check authentication on app load
-    console.log("Auth Check");
-    console.log(isCheckingAuth)
+    // console.log("Auth Check");
+    // console.log(isCheckingAuth)
   }, [checkAuth,isCheckingAuth]);
 
-  console.log({ authUser });
 
   // Show a loading spinner while checking auth status
   if (isCheckingAuth && !authUser)

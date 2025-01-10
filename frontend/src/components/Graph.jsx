@@ -15,7 +15,7 @@ const Graph = () => {
     try {
       const userSessions = await getSessionsByUser({ userId: authUser._id });
       setSessions(userSessions);
-      console.log("Fetched sessions:", userSessions);
+      // console.log("Fetched sessions:", userSessions);
 
       // Map over userSessions instead of sessions
       userSessions.map((session, index) => {
@@ -24,8 +24,8 @@ const Graph = () => {
         durations[index] = session.totalDuration;
       });
 
-      console.log("Dates : ", dates);
-      console.log("Durations : ", durations);
+      // console.log("Dates : ", dates);
+      // console.log("Durations : ", durations);
 
       setShowStats(true);
     } catch (error) {

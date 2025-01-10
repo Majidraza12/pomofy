@@ -38,12 +38,12 @@ const Timer = () => {
   //create a timer using Intervals
   useEffect(() => {
     setSessionDuration(settings.pomodoro);
-    console.log("Time Left", settings.pomodoro);
+    // console.log("Time Left", settings.pomodoro);
   }, [isRunning, setSessionDuration, settings.pomodoro, timeLeft]);
 
 
   useEffect(() => {
-    console.log("Duration", sessionDuration);
+    // console.log("Duration", sessionDuration);
     let interval;
     if (isRunning && timeLeft > 0) {
       interval = setInterval(() => {
