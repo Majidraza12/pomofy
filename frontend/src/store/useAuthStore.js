@@ -47,6 +47,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success("Logged In Successfully");
     } catch (error) {
+      set({isValid: false})
       toast.error(error.response.data.message);
       console.log(error);
     } finally {
@@ -80,5 +81,43 @@ export const useAuthStore = create((set) => ({
       set({ isFetchingQuote: false });
     }
   },
+  forgetPassword: async (data) => {
+    set({ isSendingOTP: true });
+    try {
+      const res = await axiosInstance.post("/auth/forgotPassword", data);
+      set({ isSendingOTP: false });
+      toast.success(res.data.message);
+      set({ step: 2 });
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);
+    } finally {
+      set({ isSendingOTP: false });
+    }
+  },
+  verifyOTP: async (data) => {
+    set({isVerifying: true });
+    try {
+      const res = await axiosInstance.post("/auth/verifyOTP", data);
+      set({ isVerifying: false });
+      toast.success(res.data.message);
+      set({ step: 3 });
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);
+    }
+  },
+  resetPassword: async (data) => {
+    set({ isResettingPassword: true });
+    try {
+      const res = await axiosInstance.post("/auth/resetPassword", data);
+      set({ isResettingPassword: false });
+      toast.success(res.data.message);
+      set({ step: 0 });
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);
+    }
+  } 
 }));
 

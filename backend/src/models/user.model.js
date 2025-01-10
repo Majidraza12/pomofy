@@ -17,11 +17,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    profilePic: {
-        type: String, //profile pic url stored
-        default: "",
-        required:false
-    },
     //reset pasword
     resetPasswordOTP: {
         type: String,

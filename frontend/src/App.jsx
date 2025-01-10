@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import { useAuthStore } from "./store/useAuthStore";
 import { Loader } from "lucide-react";
 import Login from "./pages/Login";
+import ResetPage from "./pages/ResetPage";
 const App = () => {
   
   const { authUser, checkAuth, isCheckingAuth,} = useAuthStore();
@@ -35,7 +36,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={authUser ? <Dashboard/> : <Landing/>} />
         <Route path="/login" element={ !authUser ? <Login /> : <Dashboard/>} />
-        <Route path="/signup" element={!authUser ? <SignUp /> : <Dashboard/>} />
+        <Route path="/signup" element={!authUser ? <SignUp /> : <Dashboard />} />
+        <Route path="/forgetPassword" element={<ResetPage/>} />
       </Routes>
       <Toaster />
     </>
