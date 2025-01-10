@@ -7,6 +7,8 @@ export const useAuthStore = create((set) => ({
   isCheckingAuth: false,
   isSigningUp: false,
   isLoggingIn: false,
+  isFetchingQuote: false,
+  quote: null,
   //reset Password thing
   isSendingOTP: false,
   isVerifying: false,
@@ -59,6 +61,23 @@ export const useAuthStore = create((set) => ({
     } catch (error) {
       toast.error(error.response.data.message);
       console.log(error);
+    }
+  },
+  getQuote: async () => {
+    set({ isFetchingQuote: true });
+    try {
+      const res = await axiosInstance.get("/auth/getQuote");
+      if (res.data[0].a === "zenquotes.io") {
+        set({
+          quote: "Keep your eyes on the stars, and your feet on the ground.",
+        });
+      } else {
+        set({ quote: res.data[0].q });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      set({ isFetchingQuote: false });
     }
   },
 }));

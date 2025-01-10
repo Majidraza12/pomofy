@@ -4,8 +4,14 @@ import { useSessionStore } from "../store/useSessionStore";
 import { RotateCcw, Play, Pause } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 const Timer = () => {
-  const { timeLeft, isRunning, setTimeLeft, setIsRunning, resetTimer } =
-    useTimerStore();
+  const {
+    timeLeft,
+    isRunning,
+    setTimeLeft,
+    setIsRunning,
+    resetTimer,
+    settings,
+  } = useTimerStore();
   const {
     sessionCompleted,
     setSessionCompleted,
@@ -31,12 +37,18 @@ const Timer = () => {
   }, [authUser, sessionCompleted, saveSession, sessionDuration]);
   //create a timer using Intervals
   useEffect(() => {
+    setSessionDuration(settings.pomodoro);
+    console.log("Time Left", settings.pomodoro);
+  }, [isRunning, setSessionDuration, settings.pomodoro, timeLeft]);
+
+
+  useEffect(() => {
+    console.log("Duration", sessionDuration);
     let interval;
-    setSessionDuration(timeLeft);
     if (isRunning && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft(timeLeft - 1);
-      }, 1000);
+      }, 950);
     }
     if (timeLeft - 1 === 0) {
       setSessionCompleted(true);
@@ -53,6 +65,7 @@ const Timer = () => {
     setSessionDuration,
     setIsRunning,
     resetTimer,
+    sessionDuration,
   ]);
   //Format the time to display in the timer
   const formatTime = (seconds) => {

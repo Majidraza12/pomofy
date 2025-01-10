@@ -18,14 +18,14 @@ const Navbar = () => {
 
   return (
     <div className="bg-primary flex justify-between">
-      <p className="text-4xl text-center p-2">Productivity At its finest</p>
+      <p className="text-4xl text-center p-2 font-bold font-mono">Pomofy</p>
       <div className="flex p-2">
         <div className="mr-5">
           <Settings />
         </div>
         {
           authUser ? (
-            <button className='btn hover:text-gray-300' onClick={(e)=>handleLogout(e)}><LogOut/></button>
+            <button className='btn  hover:text-gray-300' onClick={(e)=>handleLogout(e)}><LogOut/></button>
           ) : ""
         }
       </div>

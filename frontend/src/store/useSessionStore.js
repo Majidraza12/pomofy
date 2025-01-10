@@ -27,6 +27,7 @@ export const useSessionStore = create((set) => ({
 
     try {
       const response = await axiosInstance.post("/session/store", dataToSend);
+      alert("Timer Completed");
       toast.success("Session saved successfully!");
       return response.data;
     } catch (error) {
